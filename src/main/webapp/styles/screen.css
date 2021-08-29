@@ -1,0 +1,52 @@
+@media screen and (min-width: 600px) {
+    .title{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .title_label{
+        display: inline-block;
+        margin-left: 2%;
+        margin-right: 10%;
+    }
+
+    #heat{
+        display: inline-block;
+        /*margin-left: 0%;*/
+        alignment: right;
+    }
+
+    .top_box {
+        display: grid;
+        grid-template-columns: 30% 40% 40%;
+        align-items: start;
+        justify-content: space-between;
+    }
+
+    .clearButton{
+        width: 100%;
+    }
+
+    .plot {
+        margin-left: 3%;
+        margin-right: 5%;
+        /*width: 30%;*/
+    }
+
+    .form {
+        width: 100%;
+        height: 200%;
+    }
+
+    .table_block {
+        /*width: 100%;*/
+    }
+
+    .description {
+        width: 60%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+}
