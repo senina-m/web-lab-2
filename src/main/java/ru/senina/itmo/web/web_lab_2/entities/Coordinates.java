@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.senina.itmo.web.web_lab_2.exceptions.CoordinatesOutOfBoundsException;
 
+import java.io.Serializable;
+
 @NoArgsConstructor
-public class Coordinates {
+public class Coordinates implements Serializable {
     @Getter
     private int x;
     @Getter

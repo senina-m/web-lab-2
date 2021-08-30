@@ -4,17 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
-public class Attempt {
+public class Attempt implements Serializable {
 
     @Setter @Getter
     private Coordinates coordinates;
 
     @Setter @Getter
-    private boolean isFitArea;
-
-//    private Date attemptTime;
-
-//    private Date scriptTime;
+    private boolean doFitArea;
 
 }

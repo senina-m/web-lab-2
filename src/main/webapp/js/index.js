@@ -5,7 +5,7 @@ processData = function (event) {
     console.log('Start processing form')
     let coordinates = validateForm();
     if (coordinates != null){
-        submitData(coordinates, "https://se.ifmo.ru/~s312986/web-lab-1/php/main.php").then(pointsArray => {
+        submitData(coordinates, "http://127.0.0.1:8080/web-lab-2-1.0/controller").then(pointsArray => {
             drawPlot(pointsArray);
             drawTable(pointsArray);
         }).catch(err => console.log(err));

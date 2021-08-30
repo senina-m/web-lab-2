@@ -1,4 +1,4 @@
-package ru.senina.itmo.web.web_lab_2;
+package ru.senina.itmo.web.web_lab_2.servlet;
 
 import java.io.*;
 import javax.servlet.http.*;

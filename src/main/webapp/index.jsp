@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Area counter - lab 1</title>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/Connector.js"></script>
     <script type="text/javascript" src="js/Plot.js"></script>
     <script type="text/javascript" src="js/Table.js"></script>
     <script type="text/javascript" src="js/CoordinatesValidator.js"></script>
@@ -14,7 +14,10 @@
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
 </head>
-<body onload="drawPlot(undefined)">
+<body>
+<script>
+    drawPlot(<%=session.getAttribute("jsonListOfAttempts")%>);
+</script>
 <div class="title">
     <h1 class="title_label">Check if coordinates fit the area</h1>
     <div id="heat"> Senina Mariya Michailovna P3212<br>Variant: 12019</div>
@@ -76,12 +79,19 @@
                     <td> y</td>
                     <td> r</td>
                     <td> result</td>
-                    <td> time</td>
-                    <td> script time</td>
                 </tr>
                 </thead>
                 <tbody id="table_body">
-
+                <jsp:useBean id="attemptsList" scope="session"
+                             class="ru.senina.itmo.web.web_lab_2.entities.AttemptsList"/>
+                <c:forEach var="attempt" items="${attemptsList.list}">
+                    <tr>
+                        <td> ${attempt.coordinates.x}</td>
+                        <td> ${attempt.coordinates.y}</td>
+                        <td> ${attempt.coordinates.r}</td>
+                        <td> ${attempt.doFitArea} </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
