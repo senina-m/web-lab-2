@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Area counter - lab 1</title>
+    <title>Area counter - lab 2</title>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
     <script type="text/javascript" src="js/Plot.js"></script>
     <script type="text/javascript" src="js/Table.js"></script>
