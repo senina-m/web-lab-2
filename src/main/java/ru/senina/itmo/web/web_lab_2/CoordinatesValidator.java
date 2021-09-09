@@ -18,7 +18,6 @@ public class CoordinatesValidator {
         if (!(r >= 2 && r <= 5)) {
             throw new CoordinatesOutOfBoundsException(r, "r");
         }
-
     }
 
 }

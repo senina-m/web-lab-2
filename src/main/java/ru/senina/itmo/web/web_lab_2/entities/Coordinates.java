@@ -14,7 +14,7 @@ public class Coordinates implements Serializable {
     @Getter
     private double r;
 
-    public Coordinates(int x, double y, double r) {
+    public Coordinates(double x, double y, double r) {
         setX(x);
         setY(y);
         setR(r);
