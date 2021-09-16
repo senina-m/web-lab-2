@@ -5,6 +5,7 @@ import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 import ru.senina.itmo.web.web_lab_2.exceptions.CoordinatesOutOfBoundsException;
 import ru.senina.itmo.web.web_lab_2.exceptions.NoCoordinatesParametersInRequest;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.logging.Level;
 @Log
 @WebFilter("/")
 public class ValidationFilter implements Filter {
-    private final CoordinatesValidator validator = new CoordinatesValidator();
+    private @Inject CoordinatesValidator validator;
 
     @Override
     public void init(FilterConfig fConfig) {

@@ -1,8 +1,10 @@
 package ru.senina.itmo.web.web_lab_2.validators;
 
+import ru.senina.itmo.web.web_lab_2.annatations.CoordinatesChecker;
 import ru.senina.itmo.web.web_lab_2.exceptions.CoordinatesOutOfBoundsException;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 
+@CoordinatesChecker
 public class CoordinatesValidator {
     public void validate(Coordinates coordinates){
         double x = coordinates.getX();

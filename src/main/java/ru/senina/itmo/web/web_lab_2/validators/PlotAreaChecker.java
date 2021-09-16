@@ -2,8 +2,10 @@ package ru.senina.itmo.web.web_lab_2.validators;
 
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import ru.senina.itmo.web.web_lab_2.annatations.AreaChecker;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 
+@AreaChecker
 @NoArgsConstructor
 public class PlotAreaChecker {
 
@@ -15,9 +17,5 @@ public class PlotAreaChecker {
         return !((x <= 0 && y <= 0 && (Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow((r / 2), 2)))
                 || (x >= 0 && x <= r / 2 && y <= 0 && y >= -r)
                 || (x + r / 2 >= y && y >= 0 && x >= 0));
-    }
-
-    public static PlotAreaChecker getChecker(){
-        return new PlotAreaChecker();
     }
 }

@@ -6,6 +6,7 @@ import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import java.util.Optional;
 @Log
 @WebServlet("/check")
 public class AreaCheckServlet extends HttpServlet {
-    private final PlotAreaChecker areaChecker = PlotAreaChecker.getChecker();
+    private @Inject PlotAreaChecker areaChecker;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
