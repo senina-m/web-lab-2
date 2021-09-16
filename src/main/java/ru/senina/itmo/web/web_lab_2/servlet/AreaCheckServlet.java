@@ -18,18 +18,15 @@ import java.util.Optional;
 @WebServlet("/check")
 public class AreaCheckServlet extends HttpServlet {
     private @Inject PlotAreaChecker areaChecker;
+    private @Inject AttemptsList attemptsList;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
         try{
             Coordinates coordinates = (Coordinates) request.getAttribute("coordinates");
 
-            HttpSession session = request.getSession();
             Attempt lastAttempt = new Attempt(coordinates, areaChecker.check(coordinates));
-            AttemptsList attemptsList = (AttemptsList) Optional.ofNullable(session.getAttribute("listOfAttempts")).orElse(new AttemptsList());
             attemptsList.add(lastAttempt);
-
-            session.setAttribute("listOfAttempts", attemptsList);
             getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
         }catch (Exception e){
             log("wrong coordinates in area check servlet"); //fixme new way to log -- google how it works

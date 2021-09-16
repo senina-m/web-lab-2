@@ -1,3 +1,4 @@
+<jsp:useBean id="attemptsList" scope="session" class="ru.senina.itmo.web.web_lab_2.dao.AttemptsList"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -16,7 +17,7 @@
 </head>
 <body>
 <script>
-    drawPlot(<%=session.getAttribute("jsonListOfAttempts")%>);
+    drawPlot(${attemptsList.listToJson()});
 </script>
 <div class="title">
     <h1 class="title_label">Check if coordinates fit the area</h1>
@@ -82,8 +83,6 @@
                 </tr>
                 </thead>
                 <tbody id="table_body">
-                <jsp:useBean id="attemptsList" scope="session"
-                             class="ru.senina.itmo.web.web_lab_2.dao.AttemptsList"/>
                 <c:forEach var="attempt" items="${attemptsList.list}">
                     <tr>
                         <td> ${attempt.coordinates.x}</td>

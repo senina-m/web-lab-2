@@ -16,8 +16,7 @@ let lastElementNum = 0;
 const DEFAULT_R = 2;
 
 drawPlot = (pointsArray) => {
-
-
+    //todo decode json array
     if (pointsArray === undefined) {
         CANVAS = SVG()
             .addTo('#plot')
