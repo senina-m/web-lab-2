@@ -3,7 +3,7 @@ package ru.senina.itmo.web.web_lab_2.parser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.senina.itmo.web.web_lab_2.entities.Attempt;
-import ru.senina.itmo.web.web_lab_2.entities.AttemptsList;
+import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.exceptions.ParsingException;
 
 public class AttemptsListJsonParser extends JsonParser<AttemptsList> {

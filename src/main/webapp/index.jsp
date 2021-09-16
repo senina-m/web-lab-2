@@ -23,14 +23,11 @@
 <div class="top_box">
     <div class="plot">
         <div id='plot'></div>
-        <div>
-            <input type="button" class="clearButton" onclick="clearPlot()" value="Clear">
-        </div>
     </div>
 
     <div class="table_form_box">
         <div class="form">
-            <form class='form'>
+            <form class='form' action="${pageContext.request.contextPath}/controller" method="post">
                 <fieldset class="shadowbox">
                     <legend>Enter coordinates:</legend>
                     <div>
@@ -62,8 +59,7 @@
                         </div>
                     </div>
                     <div>
-                        <input type="submit" id="submitButton" class='validateBtn' value="Submit"
-                               onclick="processData(event)">
+                        <input type="submit" id="submitButton" class='validateBtn' value="Submit">
                     </div>
                 </fieldset>
             </form>

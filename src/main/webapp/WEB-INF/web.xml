@@ -8,4 +8,11 @@
         <error-code>404</error-code>
         <location>/URLError.jsp</location>
     </error-page>
+
+    <context-param>
+        <param-name>org.jboss.weld.development</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
 </web-app>
+

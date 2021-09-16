@@ -245,10 +245,8 @@ function clickPointEvent(event) {
         removeErrors();
         if (checkValues(coordinates)) {
             console.log('Try to draw point after click. Coordinates: ' + coordinates.x + ', ' + coordinates.y + ', r: ' + coordinates.r);
-            submitData(coordinates, "http://127.0.0.1:8080/web-lab-2-1.0/controller").then(pointsArray => {
-                drawPlot(pointsArray);
-                drawTable(pointsArray);
-            }).catch(err => console.log(err));
+            submitData(coordinates, "http://127.0.0.1:8080/web-lab-2-1.0/").catch(exception => alert("Шеф, всё пропало запрос не проходит!\n" + exception));
+            //fixme: delete this alert
         }
     }
 }

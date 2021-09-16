@@ -1,4 +1,4 @@
-package ru.senina.itmo.web.web_lab_2;
+package ru.senina.itmo.web.web_lab_2.validators;
 
 import lombok.extern.java.Log;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 @Log
-@WebFilter("/*")
+@WebFilter("/")
 public class ValidationFilter implements Filter {
     private final CoordinatesValidator validator = new CoordinatesValidator();
 
@@ -24,6 +24,7 @@ public class ValidationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        log.log(Level.FINE, "Got a new request to filter!");
         try{
         double x = Double.parseDouble(Optional
                 .ofNullable(request.getParameter("x"))
@@ -34,7 +35,6 @@ public class ValidationFilter implements Filter {
         double r = Double.parseDouble(Optional
                 .ofNullable(request.getParameter("y"))
                 .orElseThrow(NoCoordinatesParametersInRequest::new));
-
         log.log(Level.FINE, "Coordinates values are x: " + x + ", y: " + y + ", r: " + r);
 
         Coordinates coordinates = new Coordinates(x, y, r);
@@ -43,7 +43,7 @@ public class ValidationFilter implements Filter {
             removeCoordinatesAttributes(request, new String[]{"x", "y", "r"});
             chain.doFilter(request, response);
         } catch (CoordinatesOutOfBoundsException | NoCoordinatesParametersInRequest e) {
-            log.log(Level.WARNING, e.getMessage());
+            log.log(Level.WARNING, "Error detected by validation filter" + e.getMessage());
             request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }

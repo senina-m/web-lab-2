@@ -20,10 +20,20 @@ public class ControllerServlet extends HttpServlet {
         if (Optional.of(parseBoolean(req.getParameter("coordinates"))).orElse(false)) {
             getServletContext().getRequestDispatcher("/areaCheck").forward(req, resp);
         } else {
-            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
             log.log(Level.WARNING, "Wrong arguments in controller servlet");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         }
         super.doPost(req, resp);
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (Optional.of(parseBoolean(req.getParameter("coordinates"))).orElse(false)) {
+            getServletContext().getRequestDispatcher("/areaCheck").forward(req, resp);
+        } else {
+            log.log(Level.WARNING, "Wrong arguments in controller servlet");
+            getServletContext().getRequestDispatcher("/testPage.jsp").forward(req, resp);
+        }
+        super.doGet(req, resp);
     }
 }
 

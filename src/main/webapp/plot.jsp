@@ -83,7 +83,7 @@
                 </thead>
                 <tbody id="table_body">
                 <jsp:useBean id="attemptsList" scope="session"
-                             class="ru.senina.itmo.web.web_lab_2.entities.AttemptsList"/>
+                             class="ru.senina.itmo.web.web_lab_2.dao.AttemptsList"/>
                 <c:forEach var="attempt" items="${attemptsList.list}">
                     <tr>
                         <td> ${attempt.coordinates.x}</td>

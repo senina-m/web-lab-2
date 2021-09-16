@@ -1,7 +1,8 @@
-package ru.senina.itmo.web.web_lab_2.entities;
+package ru.senina.itmo.web.web_lab_2.dao;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 
 import java.io.Serializable;
 import java.util.LinkedList;

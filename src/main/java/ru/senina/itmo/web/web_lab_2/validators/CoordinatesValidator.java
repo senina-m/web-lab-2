@@ -1,4 +1,4 @@
-package ru.senina.itmo.web.web_lab_2;
+package ru.senina.itmo.web.web_lab_2.validators;
 
 import ru.senina.itmo.web.web_lab_2.exceptions.CoordinatesOutOfBoundsException;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
