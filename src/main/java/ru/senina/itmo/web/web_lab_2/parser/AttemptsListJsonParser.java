@@ -6,10 +6,14 @@ import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.exceptions.ParsingException;
 
+import javax.inject.Inject;
+
+@ru.senina.itmo.web.web_lab_2.annatations.JsonParser
 public class AttemptsListJsonParser extends JsonParser<AttemptsList> {
 
-    public AttemptsListJsonParser(ObjectMapper objectMapper, Class<AttemptsList> classT) {
-        super(objectMapper, classT);
+    @Inject
+    public AttemptsListJsonParser() {
+        super(new ObjectMapper(), AttemptsList.class);
     }
 
     public String fromAttemptToString(Attempt attempt) throws ParsingException {

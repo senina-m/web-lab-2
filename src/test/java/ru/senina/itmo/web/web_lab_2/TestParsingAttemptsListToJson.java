@@ -9,7 +9,7 @@ import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 import ru.senina.itmo.web.web_lab_2.parser.AttemptsListJsonParser;
 
-public class TestParsingAttemptsListToJson {
+public class TestParsingAttemptsListToJson{
 
     //fixme: deserialization
 
@@ -30,7 +30,7 @@ public class TestParsingAttemptsListToJson {
         attemptsList.add(attempt2);
         attemptsList.add(attempt3);
 
-        AttemptsListJsonParser parser = new AttemptsListJsonParser(objectMapper, AttemptsList.class);
+        AttemptsListJsonParser parser = new AttemptsListJsonParser();
         String json = parser.fromObjectToString(attemptsList);
         System.out.println(json);
 //        AttemptsList newObject = parser.fromStringToObject(json);
@@ -40,7 +40,7 @@ public class TestParsingAttemptsListToJson {
     @Test
     public void attemptSerialization() {
         Attempt attempt = new Attempt(new Coordinates(1, 2, 4), true);
-        AttemptsListJsonParser parser = new AttemptsListJsonParser(objectMapper, AttemptsList.class);
+        AttemptsListJsonParser parser = new AttemptsListJsonParser();
         String json = parser.fromAttemptToString(attempt);
         System.out.println(json);
 //        AttemptsList newAttempt = parser.fromStringToObject(json);

@@ -4,15 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.NoArgsConstructor;
 import ru.senina.itmo.web.web_lab_2.exceptions.ParsingException;
 
-import javax.inject.Inject;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//@ru.senina.itmo.web.web_lab_2.annatations.JsonParser
-public class JsonParser<T> {
+public class JsonParser<T> implements Serializable {
     private static ObjectMapper objectMapper;
     private final Class<T> classT;
 

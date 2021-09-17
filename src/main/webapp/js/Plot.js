@@ -1,5 +1,4 @@
 let WIDTH = 1000;
-
 let HEIGHT = 1000;
 const X_CENTER = 0;
 const Y_CENTER = 0;
@@ -15,16 +14,16 @@ let clearedAt = 0;
 let lastElementNum = 0;
 const DEFAULT_R = 2;
 
-drawPlot = (pointsArray) => {
-    //todo decode json array
-    if (pointsArray === undefined) {
+drawPlot = (pointsArrayJson) => {
+    if (pointsArrayJson === undefined) {
         CANVAS = SVG()
             .addTo('#plot')
             .size('100%', '100%')
             .viewbox(0, 0, WIDTH, HEIGHT);
         initPlot();
     } else {
-        drawPlotWithPoints(pointsArray);
+        console.log("points json parsing result: " + JSON.parse(pointsArrayJson))
+        drawPlotWithPoints(JSON.parse(pointsArrayJson));
     }
 }
 
