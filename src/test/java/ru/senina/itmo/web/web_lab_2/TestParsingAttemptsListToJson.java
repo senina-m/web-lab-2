@@ -20,22 +20,22 @@ public class TestParsingAttemptsListToJson{
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     }
 
-    @Test
-    public void testFromObjectToJson() {
-        Attempt attempt1 = new Attempt(new Coordinates(1, 2, 4), true);
-        Attempt attempt2 = new Attempt(new Coordinates(-4, -5, 2), false);
-        Attempt attempt3 = new Attempt(new Coordinates(0, 0.3, 2.3), true);
-        AttemptsList attemptsList = new AttemptsList();
-        attemptsList.add(attempt1);
-        attemptsList.add(attempt2);
-        attemptsList.add(attempt3);
-
-        AttemptsListJsonParser parser = new AttemptsListJsonParser();
-        String json = parser.fromObjectToString(attemptsList);
-        System.out.println(json);
-//        AttemptsList newObject = parser.fromStringToObject(json);
-        System.out.println("Test finished");
-    }
+//    @Test
+//    public void testFromObjectToJson() {
+//        Attempt attempt1 = new Attempt(new Coordinates(1, 2, 4), true);
+//        Attempt attempt2 = new Attempt(new Coordinates(-4, -5, 2), false);
+//        Attempt attempt3 = new Attempt(new Coordinates(0, 0.3, 2.3), true);
+//        AttemptsList attemptsList = new AttemptsList();
+//        attemptsList.add(attempt1);
+//        attemptsList.add(attempt2);
+//        attemptsList.add(attempt3);
+//
+//        AttemptsListJsonParser parser = new AttemptsListJsonParser();
+//        String json = parser.fromObjectToString(attemptsList);
+//        System.out.println(json);
+////        AttemptsList newObject = parser.fromStringToObject(json);
+//        System.out.println("Test finished");
+//    }
 
     @Test
     public void attemptSerialization() {

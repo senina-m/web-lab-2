@@ -15,7 +15,8 @@ import java.util.logging.Level;
 @Log
 @WebFilter("/")
 public class ValidationFilter implements Filter {
-    private @Inject CoordinatesValidator validator;
+    private @Inject
+    CoordinatesValidator validator;
 
     @Override
     public void init(FilterConfig fConfig) {

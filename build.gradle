@@ -14,14 +14,15 @@ ext {
     junitVersion = '5.7.1' as Object
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     implementation 'javax.servlet:jstl:1.2'
-    compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2'
+    compileOnly 'javax.enterprise:cdi-api:1.0'
+
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
     implementation 'com.jwebmp.jackson.datatype:jackson-datatype-jsr310:0.63.0.19'
@@ -35,4 +36,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': "ru.senina.itmo.lab8.ClientMain"
+    }
 }

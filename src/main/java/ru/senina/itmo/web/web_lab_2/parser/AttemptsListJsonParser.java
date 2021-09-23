@@ -8,6 +8,7 @@ import ru.senina.itmo.web.web_lab_2.exceptions.ParsingException;
 
 import javax.inject.Inject;
 
+
 @ru.senina.itmo.web.web_lab_2.annatations.JsonParser
 public class AttemptsListJsonParser extends JsonParser<AttemptsList> {
 
@@ -28,6 +29,7 @@ public class AttemptsListJsonParser extends JsonParser<AttemptsList> {
         }
     }
 
+    @Deprecated
     public Attempt fromStringToAttempt(String json) throws ParsingException {
         try {
             return AttemptsListJsonParser.getObjectMapper().readValue(json, Attempt.class);

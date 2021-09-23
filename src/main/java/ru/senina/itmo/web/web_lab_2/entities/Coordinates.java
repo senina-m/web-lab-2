@@ -1,34 +1,19 @@
 package ru.senina.itmo.web.web_lab_2.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public class Coordinates implements Serializable {
-    @Getter
+    @Getter @Setter
     private double x;
-    @Getter
+    @Getter @Setter
     private double y;
-    @Getter
+    @Getter @Setter
     private double r;
-
-    public Coordinates(double x, double y, double r) {
-        setX(x);
-        setY(y);
-        setR(r);
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setR(double r) {
-    this.r = r;
-    }
 }

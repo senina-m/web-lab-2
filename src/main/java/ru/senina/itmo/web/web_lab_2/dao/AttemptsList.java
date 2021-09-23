@@ -1,6 +1,5 @@
 package ru.senina.itmo.web.web_lab_2.dao;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.senina.itmo.web.web_lab_2.entities.Attempt;
@@ -17,7 +16,8 @@ import java.util.LinkedList;
 @NoArgsConstructor
 //todo do i need to create a specific annotation to declare the type of jop that this class does
 public class AttemptsList implements Serializable {
-    private @Inject AttemptsListJsonParser parser;
+    private @Inject
+    AttemptsListJsonParser parser;
 
     @Setter
     private LinkedList<Attempt> list = new LinkedList<>();
