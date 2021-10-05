@@ -2,11 +2,12 @@ package ru.senina.itmo.web.web_lab_2.validators;
 
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.senina.itmo.web.web_lab_2.annatations.AreaChecker;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 
-@AreaChecker
+import javax.enterprise.context.Dependent;
+
 @NoArgsConstructor
+@Dependent
 public class PlotAreaChecker {
 
     public boolean check(@NotNull Coordinates coordinates) {

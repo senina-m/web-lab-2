@@ -14,14 +14,15 @@ ext {
     junitVersion = '5.7.1' as Object
 }
 
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
-    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
-    implementation 'javax.servlet:jstl:1.2'
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
     compileOnly 'javax.enterprise:cdi-api:1.0'
+    implementation 'javax.servlet:jstl:1.2' //to be able to use ForEach in plot.jsp
+//    implementation 'org.jboss.weld:weld-api:4.0.Final'
 
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'

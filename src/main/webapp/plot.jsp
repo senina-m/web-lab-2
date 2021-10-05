@@ -15,13 +15,11 @@
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
 </head>
-<body>
-<script>
-    drawPlot(${attemptsList.listToJson()});
-</script>
+<body onload="drawPlot(${attemptsList.listToJson()})">
 <div class="title">
-    <h1 class="title_label">Check if coordinates fit the area</h1>
-    <div id="heat"> Senina Mariya Michailovna P3212<br>Variant: 12019</div>
+    <h1 class="title_label"> Check if coordinates fit the area</h1>
+    <div id="heat"> <a href="https://github.com/senina-m/"> Senina Mariya Michailovna P3212</a><br>
+        Variant: 123450</div>
 </div>
 
 <div class="top_box">
@@ -34,7 +32,7 @@
 
     <div class="table_form_box">
         <div class="form">
-            <form class='form'>
+            <form class='form' action="${pageContext.request.contextPath}/controller" method="get">
                 <fieldset class="shadowbox">
                     <legend>Enter coordinates:</legend>
                     <div>
@@ -66,12 +64,12 @@
                         </div>
                     </div>
                     <div>
-                        <input type="submit" id="submitButton" class='validateBtn' value="Submit"
-                               onclick="processData(event)">
+                        <input type="submit" id="submitButton" class='validateBtn' value="Submit">
                     </div>
                 </fieldset>
             </form>
         </div>
+    </div>
         <div id="table_block">
             <table id='table' class="styled-table">
                 <thead>

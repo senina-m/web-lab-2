@@ -4,6 +4,7 @@
     <title>Test</title>
 </head>
 <body>
-HI, You are on a test page!
+HI, You are on a test page
+Probably because you used POST method instead of GET.
 </body>
 </html>

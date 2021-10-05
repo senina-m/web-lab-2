@@ -16,8 +16,7 @@ import java.util.LinkedList;
 @NoArgsConstructor
 //todo do i need to create a specific annotation to declare the type of jop that this class does
 public class AttemptsList implements Serializable {
-    private @Inject
-    AttemptsListJsonParser parser;
+    private @Inject AttemptsListJsonParser parser;
 
     @Setter
     private LinkedList<Attempt> list = new LinkedList<>();
@@ -27,7 +26,7 @@ public class AttemptsList implements Serializable {
     }
 
     public Attempt[] getList(){
-        return (Attempt[]) this.list.toArray();
+        return this.list.toArray(new Attempt[0]);
     }
 
     public String listToJson (){

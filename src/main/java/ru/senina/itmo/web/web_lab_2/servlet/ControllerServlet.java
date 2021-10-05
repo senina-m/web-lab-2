@@ -13,27 +13,35 @@ import java.util.logging.Level;
 
 import static java.lang.Boolean.parseBoolean;
 
+/**
+ * Redirect to checker if there is some new coordinates.
+ * If there is no data in request and session redirect to starting plot-form page.
+ */
 @Log
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (Optional.of(parseBoolean(req.getParameter("coordinates"))).orElse(false)) {
-            getServletContext().getRequestDispatcher("/areaCheck").forward(req, resp);
-        } else {
-            log.log(Level.WARNING, "Wrong arguments in controller servlet");
-            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-        }
-        super.doPost(req, resp);
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (Optional.of(parseBoolean(req.getParameter("coordinates"))).orElse(false)) {
-            getServletContext().getRequestDispatcher("/areaCheck").forward(req, resp);
-        } else {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.log(Level.WARNING, "Start process get request in ControllerServlet");
+        if (request.getAttribute("coordinates") == null) {
             log.log(Level.WARNING, "Wrong arguments in controller servlet");
-            getServletContext().getRequestDispatcher("/testPage.jsp").forward(req, resp);
+            System.out.println("Wrong arguments in controller servlet");
+            System.out.println(request.getAttribute("coordinates"));
+            getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
+        } else {
+            log.log(Level.WARNING, "Coordinates in application context are correct. Redirect to checker");
+            getServletContext().getRequestDispatcher("/controller/check").forward(request, response);
         }
-        super.doGet(req, resp);
     }
 }
 

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -17,8 +16,11 @@
 <body onload="drawPlot(undefined)">
 <div class="title">
     <h1 class="title_label">Check if coordinates fit the area</h1>
-    <div id="heat"> Senina Mariya Michailovna P3212<br>Variant: 12019</div>
+    <div id="heat"> <a href="https://github.com/senina-m/"> Senina Mariya Michailovna P3212</a><br>
+        Variant: 123450</div>
 </div>
+
+<h2>! THE INDEX.JSP PAGE !</h2>
 
 <div class="top_box">
     <div class="plot">
@@ -27,7 +29,7 @@
 
     <div class="table_form_box">
         <div class="form">
-            <form class='form' action="${pageContext.request.contextPath}/controller" method="post">
+            <form class='form' action="${pageContext.request.contextPath}/controller" method="get">
                 <fieldset class="shadowbox">
                     <legend>Enter coordinates:</legend>
                     <div>
