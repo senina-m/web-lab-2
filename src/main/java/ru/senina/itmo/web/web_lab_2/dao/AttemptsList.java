@@ -2,6 +2,7 @@ package ru.senina.itmo.web.web_lab_2.dao;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.java.Log;
 import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 import ru.senina.itmo.web.web_lab_2.parser.AttemptsListJsonParser;
 
@@ -10,7 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
 
+@Log
 @Named()
 @SessionScoped
 @NoArgsConstructor
@@ -30,6 +33,8 @@ public class AttemptsList implements Serializable {
     }
 
     public String listToJson (){
-        return parser.fromObjectToString(this);
+        String json = parser.fromObjectToString(this);
+        log.log(Level.WARNING, "Output Json: \"" + json + "\"");
+        return json;
     }
 }

@@ -15,7 +15,8 @@ let lastElementNum = 0;
 const DEFAULT_R = 2;
 
 drawPlot = (pointsArrayJson) => {
-    if (pointsArrayJson === undefined) {
+    console.log("Полученный массив точек: " + pointsArrayJson);
+    if (pointsArrayJson.length === 0) {
         CANVAS = SVG()
             .addTo('#plot')
             .size('100%', '100%')
