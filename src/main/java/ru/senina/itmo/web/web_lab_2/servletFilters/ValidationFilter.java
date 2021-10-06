@@ -3,7 +3,6 @@ package ru.senina.itmo.web.web_lab_2.servletFilters;
 import lombok.extern.java.Log;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 import ru.senina.itmo.web.web_lab_2.exceptions.CoordinatesOutOfBoundsException;
-import ru.senina.itmo.web.web_lab_2.exceptions.NoCoordinatesParametersInRequest;
 import ru.senina.itmo.web.web_lab_2.validators.CoordinatesValidator;
 
 import javax.enterprise.context.Dependent;
@@ -12,7 +11,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.logging.Level;
 
 /**

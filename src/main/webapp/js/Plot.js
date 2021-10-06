@@ -14,17 +14,20 @@ let clearedAt = 0;
 let lastElementNum = 0;
 const DEFAULT_R = 2;
 
-drawPlot = (pointsArrayJson) => {
-    console.log("Полученный массив точек: \"" + pointsArrayJson + "\"");
-    if (pointsArrayJson === "\'\'") {
-        CANVAS = SVG()
-            .addTo('#plot')
-            .size('100%', '100%')
-            .viewbox(0, 0, WIDTH, HEIGHT);
+drawPlot = (attemptsArray) => {
+    console.log("Полученный массив точек: \"" + attemptsArray + "\"");
+    CANVAS = SVG()
+        .addTo('#plot')
+        .size('100%', '100%')
+        .viewbox(0, 0, WIDTH, HEIGHT);
+    document.getElementById("plot").addEventListener('click', function (e) {
+        clickPointEvent(e);
+    });
+
+    if (attemptsArray.length === 0) {
         initPlot();
     } else {
-        console.log("points json parsing result: " + JSON.parse(pointsArrayJson))
-        drawPlotWithPoints(JSON.parse(pointsArrayJson));
+        drawPlotWithPoints(attemptsArray);
     }
 }
 
@@ -36,19 +39,21 @@ initPlot = () => {
     drawAxes();
     drawGrid();
     drawAxesScaleLabels(DEFAULT_R);
-    document.getElementById("plot").addEventListener('click', function (e) {
-        clickPointEvent(e);
-    });
     drawRValue(DEFAULT_R);
 }
 
-drawPlotWithPoints = (pointsArray) => {
+drawPlotWithPoints = (attemptsArray) => {
     console.log('Ready to draw plot!');
-    console.log(pointsArray);
+    let pointsArray = [];
+    attemptsArray.forEach(point => {
+        pointsArray.push({
+            x: (point.coordinates).x,
+            y: (point.coordinates).y,
+            r: (point.coordinates).r,
+            result: point.doFitArea,
+        });
+    });
     lastElementNum = pointsArray.length - 1;
-
-    CANVAS.rect(WIDTH, HEIGHT).fill(BACKGROUND_COLOR);
-
     scale = countScale(pointsArray);
     let lastPoint = pointsArray[pointsArray.length - 1];
     const r = lastPoint.r;
@@ -180,7 +185,7 @@ drawAxesScaleLabels = (r) => {
 
 drawGrid = () => {
     let numOfLines = WIDTH * scale / 2;
-    for (let i = 1; i < numOfLines; i++){
+    for (let i = 1; i < numOfLines; i++) {
         let lineLeft = CANVAS.line(convertX(i), 0, convertX(i), HEIGHT);
         let lineRight = CANVAS.line(convertX(-i), 0, convertX(-i), HEIGHT);
         lineLeft.stroke({width: 0.5, color: AXES_COLOR, dasharray: '5,5'});
@@ -190,6 +195,7 @@ drawGrid = () => {
 
 
 drawArea = (r) => {
+    CANVAS.rect(WIDTH, HEIGHT).fill(BACKGROUND_COLOR);
     //here diameter needed
     CANVAS.circle(r / scale).fill(AREA_COLOR).move(convertX(-r / 2), convertY(r / 2))
     const fillUnusedCircle = (convertX(0)) + ',' + (convertY(0)) + ' ' +
@@ -204,7 +210,7 @@ drawArea = (r) => {
         (convertX(0)) + ',' + (convertY(r)) + ' ' +
         (convertX(r)) + ',' + (convertY(r)) + ' ' +
         (convertX(r)) + ',' + (convertY(0)) + ' ' +
-        (convertX(0)) + ',' + (convertY(-r/2));
+        (convertX(0)) + ',' + (convertY(-r / 2));
     console.log('area coordinates ' + area)
     CANVAS.polygon(area).fill(AREA_COLOR)
 }
@@ -220,7 +226,7 @@ countPointLocation = (coords) => {
 
 drawPoint = (x, y, result, pointScale) => {
     let color = result === 'true' ? '#0f0' : '#f00';
-    CANVAS.circle(pointScale).fill(color).move(convertX(x) - pointScale/2, convertY(y) - pointScale/2);
+    CANVAS.circle(pointScale).fill(color).move(convertX(x) - pointScale / 2, convertY(y) - pointScale / 2);
 }
 
 getCoordinates = () => {
@@ -241,7 +247,7 @@ function clickPointEvent(event) {
         document.getElementById('r').value = coordinates.r;
         removeErrors();
         if (checkValues(coordinates)) {
-            console.log('Try to draw point after click. Coordinates: ' + coordinates.x + ', ' + coordinates.y + ', r: ' + coordinates.r);
+            console.log('Try to draw point after click. Coordinates: x: ' + coordinates.x + ', y: ' + coordinates.y + ', r: ' + coordinates.r);
             document.getElementById('form').submit();
         }
     }
@@ -254,7 +260,7 @@ function getCoords(event, element) {
     console.log('xPosition: ' + xPosition + ' X: ' + (event.clientX - xPosition));
     console.log('yPosition: ' + yPosition + ' Y: ' + (event.clientY - yPosition));
 
-    coordinates.x = convertToCoordinatesX(event.clientX - xPosition);
+    coordinates.x = Math.round(convertToCoordinatesX(event.clientX - xPosition));
     coordinates.y = convertToCoordinatesY(event.clientY - yPosition);
     coordinates.r = parseFloat(prompt('Please enter R value!', '2'));
     console.log('X: ' + coordinates.x);
