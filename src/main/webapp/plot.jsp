@@ -10,12 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
     <script type="text/javascript" src="js/Plot.js"></script>
     <script type="text/javascript" src="js/Table.js"></script>
+    <script type="text/javascript" src="js/Connector.js"></script>
     <script type="text/javascript" src="js/CoordinatesValidator.js"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
 </head>
-<body onload="drawPlot(${attemptsList.listToJson()})">
+<body onload='{drawPlot(${attemptsList.listToJson()})}'>
 <div class="title">
     <h1 class="title_label"> Check if coordinates fit the area</h1>
     <div id="heat"> <a href="https://github.com/senina-m/"> Senina Mariya Michailovna P3212</a><br>
@@ -32,7 +33,7 @@
 
     <div class="table_form_box">
         <div class="form">
-            <form class='form' action="${pageContext.request.contextPath}/controller" method="get">
+            <form id='form' class='form' action="${pageContext.request.contextPath}/controller" method="get">
                 <fieldset class="shadowbox">
                     <legend>Enter coordinates:</legend>
                     <div>
@@ -70,42 +71,41 @@
             </form>
         </div>
     </div>
-        <div id="table_block">
-            <table id='table' class="styled-table">
-                <thead>
+    <div id="table_block">
+        <table id='table' class="styled-table">
+            <thead>
+            <tr>
+                <td> x</td>
+                <td> y</td>
+                <td> r</td>
+                <td> result</td>
+            </tr>
+            </thead>
+            <tbody id="table_body">
+            <c:forEach var="attempt" items="${attemptsList.list}">
                 <tr>
-                    <td> x</td>
-                    <td> y</td>
-                    <td> r</td>
-                    <td> result</td>
+                    <td> ${attempt.coordinates.x}</td>
+                    <td> ${attempt.coordinates.y}</td>
+                    <td> ${attempt.coordinates.r}</td>
+                    <td> ${attempt.doFitArea} </td>
                 </tr>
-                </thead>
-                <tbody id="table_body">
-                <c:forEach var="attempt" items="${attemptsList.list}">
-                    <tr>
-                        <td> ${attempt.coordinates.x}</td>
-                        <td> ${attempt.coordinates.y}</td>
-                        <td> ${attempt.coordinates.r}</td>
-                        <td> ${attempt.doFitArea} </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
-    <div class="description">
-        Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но читайте
-        дальше, как будто тут что-то очень умное написано... Описание происходящего на странице, если вам всё ещё не
-        понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
-        написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
-        читайте дальше, как будто тут что-то очень умное написано...Описание происходящего на странице, если вам всё ещё
-        не понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
-        написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
-        читайте дальше, как будто тут что-то очень умное написано...Описание происходящего на странице, если вам всё ещё
-        не понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
-        написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
-        читайте дальше, как будто тут что-то очень умное написано...
-    </div>
+</div>
+<div class="description">
+    Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но читайте
+    дальше, как будто тут что-то очень умное написано... Описание происходящего на странице, если вам всё ещё не
+    понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
+    написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
+    читайте дальше, как будто тут что-то очень умное написано...Описание происходящего на странице, если вам всё ещё
+    не понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
+    написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
+    читайте дальше, как будто тут что-то очень умное написано...Описание происходящего на странице, если вам всё ещё
+    не понятно, что происходит понятно и не будет но читайте дальше, как будто тут что-то очень умное
+    написано...Описание происходящего на странице, если вам всё ещё не понятно, что происходит понятно и не будет но
+    читайте дальше, как будто тут что-то очень умное написано...
 </div>
 </body>
 </html>

@@ -19,7 +19,13 @@ checkValues = (coordinates) => {
         anyErrors++;
     }
 
-    if (coordinates.y > 3 || coordinates.y < -5 || isNaN(Number(coordinates.y))) {
+    if (coordinates.x < -4 || coordinates.x > 4 || isNaN(Number(coordinates.x))){
+        this.printError('x is out of range', 'x error',
+            'Has to be number from -4 to 4', document.getElementById('x'));
+        anyErrors++;
+    }
+
+    if (coordinates.y > 5 || coordinates.y < -5 || isNaN(Number(coordinates.y))) {
         this.printError('y is out of range', 'y error',
             'Has to be number from -5 to 3', document.getElementById('y'));
         anyErrors++;

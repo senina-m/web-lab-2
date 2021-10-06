@@ -15,8 +15,8 @@ let lastElementNum = 0;
 const DEFAULT_R = 2;
 
 drawPlot = (pointsArrayJson) => {
-    console.log("Полученный массив точек: " + pointsArrayJson);
-    if (pointsArrayJson.length === 0) {
+    console.log("Полученный массив точек: \"" + pointsArrayJson + "\"");
+    if (pointsArrayJson === "\'\'") {
         CANVAS = SVG()
             .addTo('#plot')
             .size('100%', '100%')
@@ -197,16 +197,14 @@ drawArea = (r) => {
         (convertX(-r / 2)) + ',' + (convertY(r / 2)) + ' ' +
         (convertX(r / 2)) + ',' + (convertY(r / 2)) + ' ' +
         (convertX(r / 2)) + ',' + (convertY(-r / 2)) + ' ' +
-        (convertX(0)) + ',' + (convertY(-r / 2))
+        (convertX(0)) + ',' + (convertY(-r / 2));
 
     CANVAS.polygon(fillUnusedCircle).fill(BACKGROUND_COLOR)
     const area = (convertX(0)) + ',' + (convertY(0)) + ' ' +
-        (convertX(-r / 2)) + ',' + (convertY(0)) + ' ' +
-        (convertX(0)) + ',' + (convertY(r / 2)) + ' ' +
-        (convertX(0)) + ',' + (convertY(0)) + ' ' +
-        (convertX(r / 2)) + ',' + (convertY(0)) + ' ' +
-        (convertX(r / 2)) + ',' + (convertY(-r)) + ' ' +
-        (convertX(0)) + ',' + (convertY(-r))
+        (convertX(0)) + ',' + (convertY(r)) + ' ' +
+        (convertX(r)) + ',' + (convertY(r)) + ' ' +
+        (convertX(r)) + ',' + (convertY(0)) + ' ' +
+        (convertX(0)) + ',' + (convertY(-r/2));
     console.log('area coordinates ' + area)
     CANVAS.polygon(area).fill(AREA_COLOR)
 }
@@ -244,8 +242,7 @@ function clickPointEvent(event) {
         removeErrors();
         if (checkValues(coordinates)) {
             console.log('Try to draw point after click. Coordinates: ' + coordinates.x + ', ' + coordinates.y + ', r: ' + coordinates.r);
-            submitData(coordinates, "http://127.0.0.1:8080/web-lab-2-1.0/").catch(exception => alert("Шеф, всё пропало запрос не проходит!\n" + exception));
-            //fixme: delete this alert
+            document.getElementById('form').submit();
         }
     }
 }

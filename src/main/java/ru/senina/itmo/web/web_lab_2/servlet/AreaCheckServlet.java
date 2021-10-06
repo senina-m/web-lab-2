@@ -6,13 +6,16 @@ import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;
@@ -34,19 +37,20 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response){
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response){
         log.log(Level.WARNING, "Got request to check area!");
         try{
             Coordinates coordinates = (Coordinates) request.getAttribute("coordinates");
             Attempt lastAttempt = new Attempt(coordinates, areaChecker.check(coordinates));
-
-            try {
+            log.log(Level.WARNING, "AttemptsList:\n" + attemptsList.listToJson());
+            try { //FIXME а такая ситуация вообще возможна? Чтобы от одного клиента запросы приходили одновременно?
                 writeLock.lock();
                 attemptsList.add(lastAttempt);
+                log.log(Level.WARNING, "Added last attempt to attempts list");
             }finally{
                 writeLock.unlock();
             }
