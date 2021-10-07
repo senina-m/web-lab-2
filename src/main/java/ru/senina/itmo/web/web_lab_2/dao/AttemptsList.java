@@ -10,7 +10,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 
 @Log
@@ -18,20 +20,21 @@ import java.util.logging.Level;
 @SessionScoped
 @NoArgsConstructor
 public class AttemptsList implements Serializable {
-    private @Inject AttemptsListJsonParser parser;
+    private @Inject
+    AttemptsListJsonParser parser;
 
     @Setter
-    private LinkedList<Attempt> list = new LinkedList<>();
+    private List<Attempt> list = Collections.synchronizedList(new LinkedList<>());
 
     public void add(Attempt attempt) {
         list.add(attempt);
     }
 
-    public Attempt[] getList(){
+    public Attempt[] getList() {
         return this.list.toArray(new Attempt[0]);
     }
 
-    public String listToJson (){
+    public String listToJson() {
         String json = parser.fromObjectToString(this);
         log.log(Level.FINE, "Output Json: \"" + json + "\"");
         return json;

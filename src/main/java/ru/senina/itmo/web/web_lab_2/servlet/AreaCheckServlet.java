@@ -22,36 +22,35 @@ import java.util.logging.Level;
 @Log
 @WebServlet("/controller/check")
 public class AreaCheckServlet extends HttpServlet {
-    private @Inject PlotAreaChecker areaChecker;
-    private @Inject AttemptsList attemptsList;
+    private @Inject
+    PlotAreaChecker areaChecker;
+    private @Inject
+    AttemptsList attemptsList;
     private final Lock writeLock = (new ReentrantReadWriteLock()).writeLock();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         processRequest(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response){
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         log.log(Level.FINE, "Got request to check area!");
-        try{
+        try {
             Coordinates coordinates = (Coordinates) request.getAttribute("coordinates");
             Attempt lastAttempt = new Attempt(coordinates, areaChecker.check(coordinates));
             log.log(Level.FINE, "AttemptsList:\n" + attemptsList.listToJson());
-            try { //FIXME а такая ситуация вообще возможна? Чтобы от одного клиента запросы приходили одновременно?
-                writeLock.lock();
-                attemptsList.add(lastAttempt);
-                log.log(Level.FINE, "Added last attempt to attempts list");
-            }finally{
-                writeLock.unlock();
-            }
+
+            attemptsList.add(lastAttempt);
+            log.log(Level.FINE, "Added last attempt to attempts list");
+
             log.log(Level.FINE, "Redirect bask to plot.jsp");
             getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
-        }catch (Exception e){
+        } catch (Exception e) {
             log("wrong coordinates in area check servlet"); //fixme new way to log -- google how it works
         }
     }

@@ -27,7 +27,7 @@ checkValues = (coordinates) => {
 
     if (coordinates.y > 5 || coordinates.y < -5 || isNaN(Number(coordinates.y))) {
         this.printError('y is out of range', 'y error',
-            'Has to be number from -5 to 3', document.getElementById('y'));
+            'Has to be number from -5 to 5', document.getElementById('y'));
         anyErrors++;
     }
     if (coordinates.r > 5 || coordinates.r < 2 || isNaN(Number(coordinates.r))) {

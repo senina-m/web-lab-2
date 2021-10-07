@@ -8,12 +8,9 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor @Getter @Setter
 public class Coordinates implements Serializable {
-    @Getter @Setter
     private double x;
-    @Getter @Setter
     private double y;
-    @Getter @Setter
     private double r;
 }

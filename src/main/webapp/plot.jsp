@@ -101,7 +101,7 @@
     This service can let you check if the coordinates you have entered fits the area.
     The area size is fixed by the value of radius R. It has to be a double number from 2 to 5.
     The coordinates X and Y shows you where the point will be located on the plot. X has to be an integer number from -4
-    to 4. And Y is a double number from -5 to 3.
+    to 4. And Y is a double number from -5 to 5.
     To enter values you can submit them in form OR just click for plot in the place you want them to be.
 
     Enjoy the service!
