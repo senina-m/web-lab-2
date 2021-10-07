@@ -34,7 +34,7 @@ public class AttemptsList implements Serializable {
 
     public String listToJson (){
         String json = parser.fromObjectToString(this);
-        log.log(Level.WARNING, "Output Json: \"" + json + "\"");
+        log.log(Level.FINE, "Output Json: \"" + json + "\"");
         return json;
     }
 }

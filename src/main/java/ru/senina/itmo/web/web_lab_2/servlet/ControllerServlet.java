@@ -32,14 +32,14 @@ public class ControllerServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.log(Level.WARNING, "Start process get request in ControllerServlet");
+        log.log(Level.FINE, "Start process get request in ControllerServlet");
         if (request.getAttribute("coordinates") == null) {
             log.log(Level.WARNING, "Wrong arguments in controller servlet");
             System.out.println("Wrong arguments in controller servlet");
             System.out.println(request.getAttribute("coordinates"));
             getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
         } else {
-            log.log(Level.WARNING, "Coordinates in application context are correct. Redirect to checker");
+            log.log(Level.FINE, "Coordinates in application context are correct. Redirect to checker");
             getServletContext().getRequestDispatcher("/controller/check").forward(request, response);
         }
     }

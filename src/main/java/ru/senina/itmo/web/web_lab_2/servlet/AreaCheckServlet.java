@@ -37,19 +37,19 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response){
-        log.log(Level.WARNING, "Got request to check area!");
+        log.log(Level.FINE, "Got request to check area!");
         try{
             Coordinates coordinates = (Coordinates) request.getAttribute("coordinates");
             Attempt lastAttempt = new Attempt(coordinates, areaChecker.check(coordinates));
-            log.log(Level.WARNING, "AttemptsList:\n" + attemptsList.listToJson());
+            log.log(Level.FINE, "AttemptsList:\n" + attemptsList.listToJson());
             try { //FIXME а такая ситуация вообще возможна? Чтобы от одного клиента запросы приходили одновременно?
                 writeLock.lock();
                 attemptsList.add(lastAttempt);
-                log.log(Level.WARNING, "Added last attempt to attempts list");
+                log.log(Level.FINE, "Added last attempt to attempts list");
             }finally{
                 writeLock.unlock();
             }
-            log.log(Level.WARNING, "Redirect bask to plot.jsp");
+            log.log(Level.FINE, "Redirect bask to plot.jsp");
             getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
         }catch (Exception e){
             log("wrong coordinates in area check servlet"); //fixme new way to log -- google how it works

@@ -80,19 +80,19 @@ clearPlot = () => {
 convertX = (x) => {
     // console.log('convert x: \n width/2 + x/scale ==> ' + WIDTH + '/' + 2 + ' + ' + x + '/' + scale + ' - ' + X_CENTER + ' =\n'
     //     + (WIDTH / 2 + x / scale - X_CENTER));
-    return (WIDTH / 2 + x / scale - X_CENTER);
+    return (WIDTH / 2 + x / scale + X_CENTER/scale);
 }
 
 convertY = (y) => {
-    return (HEIGHT / 2 - y / scale + Y_CENTER)
+    return (HEIGHT / 2 - y / scale - Y_CENTER/scale)
 }
 
 convertToCoordinatesX = (xPoint) => {
-    return (xPoint + X_CENTER - WIDTH / 2) * scale;
+    return (xPoint - WIDTH / 2) * scale - X_CENTER;
 }
 
 convertToCoordinatesY = (yPoint) => {
-    return (-yPoint + HEIGHT / 2 + Y_CENTER) * scale;
+    return ( HEIGHT / 2 - yPoint) * scale - Y_CENTER;
 }
 
 countScale = (pointsArray) => {
@@ -107,7 +107,8 @@ countScale = (pointsArray) => {
                 scale;
     });
     console.log('scale = ' + newScale)
-    return newScale;
+    // return newScale;
+    return 0.017;
 }
 
 drawAxes = () => {
@@ -215,17 +216,8 @@ drawArea = (r) => {
     CANVAS.polygon(area).fill(AREA_COLOR)
 }
 
-countPointLocation = (coords) => {
-    let x = coords.x;
-    let y = coords.y;
-    let r = coords.r;
-    return !!((x <= 0 && y <= 0 && (x ^ 2 + y ^ 2 <= (r / 2) ^ 2))
-        || (x >= 0 && x <= r / 2 && y <= 0 && y >= -r)
-        || (x + r / 2 >= y && y >= 0 && x >= 0));
-}
-
 drawPoint = (x, y, result, pointScale) => {
-    let color = result === 'true' ? '#0f0' : '#f00';
+    let color = result === true ? '#0f0' : '#f00';
     CANVAS.circle(pointScale).fill(color).move(convertX(x) - pointScale / 2, convertY(y) - pointScale / 2);
 }
 
@@ -260,6 +252,9 @@ function getCoords(event, element) {
     console.log('xPosition: ' + xPosition + ' X: ' + (event.clientX - xPosition));
     console.log('yPosition: ' + yPosition + ' Y: ' + (event.clientY - yPosition));
 
+    let plot = document.getElementById("plot");
+    WIDTH = plot.getBoundingClientRect().width;
+    HEIGHT = plot.getBoundingClientRect().height;
     coordinates.x = Math.round(convertToCoordinatesX(event.clientX - xPosition));
     coordinates.y = convertToCoordinatesY(event.clientY - yPosition);
     coordinates.r = parseFloat(prompt('Please enter R value!', '2'));
