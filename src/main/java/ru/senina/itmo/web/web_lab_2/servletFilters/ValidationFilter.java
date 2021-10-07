@@ -35,9 +35,9 @@ public class ValidationFilter implements Filter {
         HttpServletRequest httpRequest  = (HttpServletRequest) request;
         if ("POST".equals(httpRequest .getMethod())) {
             log.log(Level.FINE, "Post request came to Validation Filter");
-            //todo: be able to response on post requests
         } else {
             try {
+                //todo: check for null not for NullPointerException
                 double x = Double.parseDouble(request.getParameter("x"));
                 double y = Double.parseDouble(request.getParameter("y"));
                 double r = Double.parseDouble(request.getParameter("r"));

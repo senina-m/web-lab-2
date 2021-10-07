@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Test;
 import ru.senina.itmo.web.web_lab_2.entities.Attempt;
-import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
 import ru.senina.itmo.web.web_lab_2.parser.AttemptsListJsonParser;
 

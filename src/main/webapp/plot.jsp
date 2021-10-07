@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/Table.js"></script>
     <script type="text/javascript" src="js/Connector.js"></script>
     <script type="text/javascript" src="js/CoordinatesValidator.js"></script>
+    <script type="text/javascript" src="js/processData.js"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
@@ -67,7 +68,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" id="submitButton" class='validateBtn' value="Submit">
+                    <input type="submit" id="submitButton" onclick="processData(event)" class='validateBtn' value="Submit">
                 </div>
             </fieldset>
         </form>

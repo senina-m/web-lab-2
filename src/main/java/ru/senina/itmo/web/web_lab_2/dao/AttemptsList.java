@@ -17,7 +17,6 @@ import java.util.logging.Level;
 @Named()
 @SessionScoped
 @NoArgsConstructor
-//todo do i need to create a specific annotation to declare the type of jop that this class does
 public class AttemptsList implements Serializable {
     private @Inject AttemptsListJsonParser parser;
 
