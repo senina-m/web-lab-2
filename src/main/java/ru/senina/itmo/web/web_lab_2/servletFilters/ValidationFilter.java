@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Level;
 
 /**
@@ -32,12 +33,12 @@ public class ValidationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.log(Level.FINE, "Got a new request to filter!");
-        HttpServletRequest httpRequest  = (HttpServletRequest) request;
-        if ("POST".equals(httpRequest .getMethod())) {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if ("POST".equals(httpRequest.getMethod())) {
             log.log(Level.FINE, "Post request came to Validation Filter");
         } else {
             try {
-                //todo: check for null not for NullPointerException
                 double x = Double.parseDouble(request.getParameter("x"));
                 double y = Double.parseDouble(request.getParameter("y"));
                 double r = Double.parseDouble(request.getParameter("r"));
