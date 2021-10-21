@@ -73,18 +73,24 @@ drawPlotWithPoints = (attemptsArray) => {
 }
 
 clearPlot = () => {
-    clearedAt = lastElementNum;
-    initPlot();
+    if (submitGetRequest({session: "clear"}, "/web-lab-2-1.2/controller")) {
+        initPlot();
+        $("#table_body").empty();
+    } else {
+        removeErrors();
+        printError("can't clear session", "clear session",
+            "Can't clear plot and table", document.getElementById("clearButton"));
+    }
 }
 
 convertX = (x) => {
     // console.log('convert x: \n width/2 + x/scale ==> ' + WIDTH + '/' + 2 + ' + ' + x + '/' + scale + ' - ' + X_CENTER + ' =\n'
     //     + (WIDTH / 2 + x / scale - X_CENTER));
-    return (WIDTH / 2 + x / scale + X_CENTER/scale);
+    return (WIDTH / 2 + x / scale + X_CENTER / scale);
 }
 
 convertY = (y) => {
-    return (HEIGHT / 2 - y / scale - Y_CENTER/scale)
+    return (HEIGHT / 2 - y / scale - Y_CENTER / scale)
 }
 
 convertToCoordinatesX = (xPoint) => {
@@ -92,7 +98,7 @@ convertToCoordinatesX = (xPoint) => {
 }
 
 convertToCoordinatesY = (yPoint) => {
-    return ( HEIGHT / 2 - yPoint) * scale - Y_CENTER;
+    return (HEIGHT / 2 - yPoint) * scale - Y_CENTER;
 }
 
 countScale = (pointsArray) => {
@@ -257,7 +263,7 @@ function getCoords(event, element) {
     HEIGHT = plot.getBoundingClientRect().height;
     coordinates.x = Math.round(convertToCoordinatesX(event.clientX - xPosition));
     coordinates.y = convertToCoordinatesY(event.clientY - yPosition);
-    coordinates.r = parseFloat(prompt('Please enter R value!', '2'));
+    coordinates.r = document.getElementById("r").value; //get r from the form
     console.log('X: ' + coordinates.x);
     console.log('Y: ' + coordinates.y);
     console.log('R: ' + coordinates.r);

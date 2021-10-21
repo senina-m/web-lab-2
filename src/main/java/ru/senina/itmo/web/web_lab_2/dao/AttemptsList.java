@@ -39,4 +39,8 @@ public class AttemptsList implements Serializable {
         log.log(Level.FINE, "Output Json: \"" + json + "\"");
         return json;
     }
+
+    public void clearList() {
+        this.list.clear();
+    }
 }

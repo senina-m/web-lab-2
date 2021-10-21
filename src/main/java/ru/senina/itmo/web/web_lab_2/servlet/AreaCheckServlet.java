@@ -26,7 +26,6 @@ public class AreaCheckServlet extends HttpServlet {
     PlotAreaChecker areaChecker;
     private @Inject
     AttemptsList attemptsList;
-    private final Lock writeLock = (new ReentrantReadWriteLock()).writeLock();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
@@ -48,8 +47,8 @@ public class AreaCheckServlet extends HttpServlet {
             attemptsList.add(lastAttempt);
             log.log(Level.FINE, "Added last attempt to attempts list");
 
-            log.log(Level.FINE, "Redirect bask to plot.jsp");
-            getServletContext().getRequestDispatcher("/plot.jsp").forward(request, response);
+            log.log(Level.FINE, "Redirect bask to result.jsp");
+            getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
         } catch (Exception e) {
             log("wrong coordinates in area check servlet"); //fixme new way to log -- google how it works
         }

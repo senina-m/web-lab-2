@@ -1,7 +1,8 @@
-submitGetRequest =  (coordinates, url) => {
-    let params = objectToGetParameters(coordinates);
+submitGetRequest = async (parameters, url) => {
+    let params = objectToGetParameters(parameters);
     console.log('Sending parameters:\n' + params);
-    xmlHttpRequestHandler(url + "?" + params);
+    let response = await fetchRequestHandler(url + "?" + params);
+    return response.ok;
 }
 
 xmlHttpRequestHandler = (url) =>{
@@ -10,9 +11,9 @@ xmlHttpRequestHandler = (url) =>{
     xhr.send(null);
 }
 
-fetchRequestHandler = async (url) =>{
-    await fetch(url, {
-        method: 'GET',
+fetchRequestHandler = (url) =>{
+    return fetch(url, {
+        method: 'get',
     });
 }
 
@@ -23,3 +24,24 @@ objectToGetParameters = (object) => {
     }
     return result.slice(1, result.length);
 }
+
+submitPostRequest = async (data, url) => {
+    console.log('Sending json:\n' + JSON.stringify(data))
+
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        let json = await response.json();
+        console.log(json);
+        return json;
+    } else {
+        throw new httpError("Ошибка HTTP: " + response.status);
+    }
+}
+

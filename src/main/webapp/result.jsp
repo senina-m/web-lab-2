@@ -11,15 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/Plot.js"></script>
     <script type="text/javascript" src="js/Connector.js"></script>
-    <script type="text/javascript" src="js/CoordinatesValidator.js"></script>
-    <script type="text/javascript" src="js/processData.js"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
 </head>
 <body onload='{drawPlot(${attemptsList.listToJson()})}'>
 <div class="title">
-    <h1 class="title_label"> Check if coordinates fit the area</h1>
+    <h1 class="title_label">Results</h1>
     <div id="heat"><a href="https://github.com/senina-m/"> Senina Mariya Michailovna P3212</a><br>
         Variant: 123450
     </div>
@@ -34,46 +32,8 @@
     </div>
 </div>
 
-<div class="table_form_box">
-    <div class="form">
-        <form id='form' class='form' action="${pageContext.request.contextPath}/controller" method="get">
-            <fieldset class="shadowbox">
-                <legend>Enter coordinates:</legend>
-                <div>
-                    <div>
-                        <label for="x">X: </label>
-                        <select id="x" name="x" class='x'>
-                            <option value="-4" selected="selected">-4</option>
-                            <option value="-3">-3</option>
-                            <option value="-2">-2</option>
-                            <option value="-1">-1</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <label for="y">Y:</label>
-                        <input type="text" class='y field' id="y" name="y" value="1">
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <label for="r">R:</label>
-                        <input type="text" class='r field' id="r" name="r" value="2">
-                    </div>
-                </div>
-                <div>
-                    <input type="submit" id="submitButton" onclick="processData(event)" class='validateBtn' value="Submit">
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+<h2><a href="plot.jsp"> Submit new coordinates! </a></h2>
+
 <div id="table_block">
     <table id='table' class="styled-table">
         <thead>

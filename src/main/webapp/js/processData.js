@@ -5,7 +5,7 @@ processData = function (event) {
     console.log('Start processing form')
     let coordinates = validateForm();
     if (coordinates != null){
-        form.submit();
+        document.getElementById('form').submit();
     }else{
         console.log('data validation error');
     }

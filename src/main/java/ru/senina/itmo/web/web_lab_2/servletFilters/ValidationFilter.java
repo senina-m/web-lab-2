@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Map;
+import java.util.Enumeration;
 import java.util.logging.Level;
 
 /**
@@ -32,12 +32,19 @@ public class ValidationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.log(Level.FINE, "Got a new request to filter!");
+        log.log(Level.FINE, "Got a new " + request.toString());
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        Map<String, String[]> parameterMap = request.getParameterMap();
+        String path = httpRequest.getRequestURI();
+
+        if (path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         if ("POST".equals(httpRequest.getMethod())) {
             log.log(Level.FINE, "Post request came to Validation Filter");
         } else {
+            printAttributesNames(request);
             try {
                 double x = Double.parseDouble(request.getParameter("x"));
                 double y = Double.parseDouble(request.getParameter("y"));
@@ -47,11 +54,21 @@ public class ValidationFilter implements Filter {
                 Coordinates coordinates = new Coordinates(x, y, r);
                 validator.validate(coordinates);
                 request.setAttribute("coordinates", coordinates);
-                log.log(Level.FINE, "Coordinates from session " + request.getAttribute("coordinates"));
+                log.log(Level.WARNING, "Coordinates from session " + request.getAttribute("coordinates").toString());
             } catch (NullPointerException | NumberFormatException | CoordinatesOutOfBoundsException e) {
-                log.log(Level.WARNING, "Error detected by validation filter: " + e.getMessage());
+                log.log(Level.WARNING, "Error detected by validation filter. Message:" + e.getMessage());
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private void printAttributesNames(ServletRequest request) {
+        System.out.print("Parameters: ");
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String parameterName = names.nextElement();
+            System.out.print("'" + parameterName + "'='" + request.getParameter(parameterName) + "'; ");
+        }
+        System.out.println();
     }
 }
