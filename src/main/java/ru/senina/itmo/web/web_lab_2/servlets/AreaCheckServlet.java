@@ -1,4 +1,4 @@
-package ru.senina.itmo.web.web_lab_2.servlet;
+package ru.senina.itmo.web.web_lab_2.servlets;
 
 import lombok.extern.java.Log;
 import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
@@ -11,8 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;
 
 /**

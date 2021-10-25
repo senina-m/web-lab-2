@@ -1,4 +1,4 @@
-package ru.senina.itmo.web.web_lab_2.servlet;
+package ru.senina.itmo.web.web_lab_2.servlets;
 
 import lombok.extern.java.Log;
 

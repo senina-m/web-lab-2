@@ -5,7 +5,7 @@ const Y_CENTER = 0;
 const BACKGROUND_COLOR = '#fff';
 let CANVAS = null;
 const AXES_COLOR = '#000'
-const AREA_COLOR = '#1ff';
+const AREA_COLOR = 'lightgray';
 let scale = 0.017;
 const scaleLastPoint = 10;
 const pointsScale = 5;
@@ -78,7 +78,7 @@ clearPlot = () => {
         $("#table_body").empty();
     } else {
         removeErrors();
-        printError("can't clear session", "clear session",
+        printError("can't clear session", "clear session error",
             "Can't clear plot and table", document.getElementById("clearButton"));
     }
 }
