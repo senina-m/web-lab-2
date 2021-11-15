@@ -4,7 +4,8 @@ import lombok.extern.java.Log;
 import ru.senina.itmo.web.web_lab_2.dao.AttemptsList;
 import ru.senina.itmo.web.web_lab_2.entities.Attempt;
 import ru.senina.itmo.web.web_lab_2.entities.Coordinates;
-import ru.senina.itmo.web.web_lab_2.validators.PlotAreaChecker;
+import ru.senina.itmo.web.web_lab_2.validators.areaCheckers.AreaChecker;
+import ru.senina.itmo.web.web_lab_2.validators.areaCheckers.CheckerBuilder;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +21,19 @@ import java.util.logging.Level;
 @Log
 @WebServlet("/controller/check")
 public class AreaCheckServlet extends HttpServlet {
-    private @Inject
-    PlotAreaChecker areaChecker;
+    private AreaChecker areaChecker;
     private @Inject
     AttemptsList attemptsList;
+
+    @Override
+    public void init(){
+        CheckerBuilder builder = new CheckerBuilder();
+        builder.initChecker();
+        builder.addCircleIn3Quoter();
+        builder.addTriangleIn4Quoter();
+        builder.addSquare1Quoter();
+        areaChecker = builder.getChecker();
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
