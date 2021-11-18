@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/Plot.js"></script>
+    <script type="text/javascript" src="js/PlotClickListener.js"></script>
     <script type="text/javascript" src="js/Connector.js"></script>
     <script type="text/javascript" src="js/CoordinatesValidator.js"></script>
     <script type="text/javascript" src="js/processData.js"></script>
@@ -18,7 +19,7 @@
     <link rel="stylesheet" media="handheld" href="styles/mobile.css">
     <link rel="stylesheet" media="screen and (min-width: 1150px)" href="styles/screen.css">
 </head>
-<body onload='{drawPlot(${attemptsList.listToJson()})}'>
+<body onload='{drawPlot(${attemptsList.listToJson()}); addPlotClickListener();}'>
 <div class="title">
     <h1 class="title_label"> Check if coordinates fit the area</h1>
     <div id="heat"><a href="https://github.com/senina-m/"> Senina Mariya Michailovna P3212</a><br>

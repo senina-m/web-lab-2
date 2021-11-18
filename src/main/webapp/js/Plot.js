@@ -20,10 +20,6 @@ drawPlot = (attemptsArray) => {
         .addTo('#plot')
         .size('100%', '100%')
         .viewbox(0, 0, WIDTH, HEIGHT);
-    document.getElementById("plot").addEventListener('click', function (e) {
-        clickPointEvent(e);
-    });
-
     if (attemptsArray.length === 0) {
         initPlot();
     } else {
